@@ -1,0 +1,11 @@
+.env
+data/
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.mp4
+.git/
+
+# Python caches / tests not needed in the image
+tests/

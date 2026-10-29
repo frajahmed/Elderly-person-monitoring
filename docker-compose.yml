@@ -1,0 +1,23 @@
+services:
+  elder-monitor:
+    build: .
+    image: elder-monitor:latest
+    container_name: elder-monitor
+    restart: unless-stopped          # restart automatically after crash/reboot
+    env_file: .env                   # TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, ...
+    command:
+      - "--source"
+      - "${CAMERA_SOURCE:-0}"
+      - "--minutes"
+      - "${ALERT_MINUTES:-15}"
+    volumes:
+      - ./data:/app/data             # zones.json lives here
+    # USB webcam: only works on a Linux host (e.g. Raspberry Pi / mini PC).
+    # On Windows/macOS Docker Desktop use an IP camera (RTSP) instead.
+    # devices:
+    #   - /dev/video0:/dev/video0
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

@@ -1,0 +1,18 @@
+# Secrets
+.env
+
+# Room-specific calibration (contains the camera view geometry)
+data/zones.json
+
+# Model weights (downloaded automatically)
+*.pt
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Recordings
+*.mp4
+*.avi
